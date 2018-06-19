@@ -1,0 +1,28 @@
+// Propiedad Simple
+body
+	background: #f9f9f9
+
+// Reglas Anidadas
+section
+	// Regla anidada simple
+	h1
+		color: #333
+	p
+		color: #343434
+		strong
+			color: red
+			// Referencia a Selector Padre
+			body.active &
+				color: cyan
+	// Regla compartida
+	h1,p
+		font-family: Arial
+	a
+		// Propiedades Anidadas
+		font:
+			family: tahoma
+			size: 2em
+			weight: bold
+		// & igual al selector Padre completo ej: section a:hover
+		&:hover
+			color: orange
