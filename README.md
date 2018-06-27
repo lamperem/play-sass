@@ -8,5 +8,5 @@ Instalar Ruby
 sass origen.sass:destino.css
 
 ### Compilación automatica de archivos SASS a CSS
-sass --watch origen.sass:destino.css
-sass --watch app/src/css:public/css
+- archivo: sass --watch origen.sass:destino.css
+- carpeta: sass --watch app/src/css:public/css
