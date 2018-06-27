@@ -1,0 +1,13 @@
+
+// Definicion de funciones propias
+// usar prefijo en declaraciones de funciones para diferenciarlas de SASS y CSS
+@function grid-width($n)
+	$grid-width: 40px
+	$gutter-width: 10px
+	@return $n * $grid-width + ($n - 1) * $gutter-width
+
+#siderbar
+	width: grid-width(5)
+
+#siderbar-2
+	width: grid-width($n: 5)

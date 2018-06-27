@@ -1,0 +1,54 @@
+// Numeros
+$real : 1.2
+$entero : 1
+$pixel : 15px
+
+.numeros
+	font-size: $real+em
+	border: $entero+px
+	margin: $pixel
+
+// Cadenas
+$cadena1 : "cadena"
+$cadena2 : 'cadena'
+
+.cadena:after
+	content: $cadena1
+
+.cadena:before 
+	content: $cadena2
+
+// colores
+$color1 : blue
+$color2 : #f9f9f9
+$color3 : rgba(255,0,0,05)
+
+h1
+	color: $color1
+
+h2
+	color: $color2
+
+h3
+	color: $color3
+
+// valores logicos
+$true : true
+$false : false
+
+// valores nulos
+$null : null
+
+// Lista de valores
+$fuente : Helvetica, Arial, sans-serif
+$radio : 1px 1px 1px 1px
+
+.lista 
+	font-family: $fuente
+	border-radius: $radio
+
+// dupla
+$dupla : (valor1: 1, valor2: 2)
+
+// mapas
+$mapa: (clave1: valor1, clave2: valor2)

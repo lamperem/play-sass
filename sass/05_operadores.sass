@@ -1,0 +1,127 @@
+$suma: 1px + 3px
+$resta: 5px - 2px
+$multi: 5*6px
+$division: 8px / 5px
+$modulo: 5px % 2px
+
+.suma
+	margin: $suma
+
+.rest
+	margin: $resta
+
+.multi
+	margin: $multi
+
+.division
+	margin: $division
+
+.modulo
+	margin: $modulo
+
+
+// Uso de /
+// fuente: https://librosweb.es/libro/sass/capitulo_6.html
+p	
+	// El carácter '/' se interpreta como código CSS normal
+	font: 10px/8px
+	$width: 1000px
+
+	// El carácter '/'  se interpreta como una división
+	width: $width/2        // Uno de los operandos es una variable
+	width: round(1.5)/2    // Uno de los operados es el resultado de una función
+	height: (500px/2)      // Los parénteis encierran la expresión
+	margin-left: 5px + 8px/2px // El '+' indica que es una expresión matemática
+
+
+/**
+ * Colores
+ */
+p
+	// los colores se descomponen en R, G y B y se operan 
+	// 01 + 04 = 05, 02 + 05 = 07 y 03 + 06 = 09
+	// resultado color: #050709
+	color: #010203 + #040506
+
+p
+	// 01 * 2 = 02, 02 * 2 = 04 y 03 * 2 = 06
+	// resultado color: #020406
+	color: #010203 * 2
+
+p
+	// colores con canal alpha
+	color: rgba(255, 255, 0, 0.75)
+
+// manipulacion de canal alpha
+$translucent-red: rgba(255, 0, 0, 0.5)
+
+p	
+	color: opacify($translucent-red, 0.3)
+	background-color: transparentize($translucent-red, 0.25)
+
+// IE
+$translucent-red: rgba(255, 0, 0, 0.5)
+$green: #00ff00
+ 
+div
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled='false',startColorstr='#{ie-hex-str($green)}',endColorstr='#{ie-hex-str($translucent-red)}')
+
+
+/**
+ * CADENAS DE TEXTO
+ */
+p
+	cursor: e + -resize
+	margin: 3px + 4px auto
+
+p:before
+	content: "Foo " + Bar
+	font-family: sans- + "serif"
+
+// Interpolacion
+p:before
+	content: "¡Hoy es el dia numero #{20 + 6}!"
+
+// Cadena vacia
+$valor: null
+p:before
+	content: "¡Cadena vacia #{$valor}!"
+
+/**
+ * PARENTESIS
+ */
+p
+	width: 1em + (2em * 3)
+
+/**
+ * FUNCIONES
+ */
+p
+	color: hsl(0,75%,35%)
+
+// Argumentos en funciones, no requieren orden
+p
+	color: hsl($hue: 0, $saturation: 100%, $lightness: 50%)
+
+
+/**
+ * INTERPOLACION
+ */
+$nombre: miclase
+$atributo: border
+
+p.#{$nombre}
+	#{$atributo}-color: blue
+
+/**
+ * VARIABLES POR DEFECTO
+ */
+$contenido: "valor nuevo"
+$contenido: "valor por defecto" !default
+
+
+p:before
+	content: $contenido
+
+p:after
+	content: $contenido

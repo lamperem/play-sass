@@ -1,0 +1,142 @@
+// Mixin sin argumento
+@mixin large-text
+	font:
+		family: Arial
+		size: 20px
+		weight: bold
+	color: #ff0000
+
+// mixin con selectores y referencia al padre
+@mixin clearfix
+	display: inline-block
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+	* html &
+		height: 1px
+
+/**
+ * mixin
+ */
+.page-title
+	@include large-text
+	padding: 4px
+	margin-top: 10px
+
+// Anidacion de mixin
+@mixin highlighted-background
+	background-color: #fc0
+
+@mixin header-text
+	font-size: 20px
+
+@mixin compound
+	@include highlighted-background
+	@include header-text
+
+.page-title-2
+	@include compound
+
+// Mixins con argumentos
+@mixin sexy-border($color, $width)
+	border:
+		color: $color
+		width: $width
+		style: dashed
+
+p
+	@include sexy-border(blue, 5px)
+
+/**
+ * Mixin con argumentos por defecto
+ */
+@mixin border($color, $width: 5px)
+	border:
+		color: $color
+		width: $width
+
+p
+	@include border(orange)
+
+/**
+ * argumentos con nombres
+ */
+p
+	@include border($color: cyan, $width: 10px)
+
+/**
+ * Mixin con argumentos variables
+ */
+@mixin box-shadow($shadows...)
+	-moz-box-shadow: $shadows
+	-webkit-box-shadow: $shadows
+	box-shadow: $shadows
+
+.shadows
+	@include box-shadow(0px 4px 5px #666, 2px 6px 10px #999)
+
+
+@mixin colors($text, $background, $border)
+	color: $text
+	background-color: $background
+	border-color: $border
+
+$values: #ff0000, #00ff00, #0000ff
+.primary
+	@include colors($values...)
+
+
+$value-map: (text: #00ff00, background: #0000ff, border: #ff0000)
+.secondary
+	@include colors($value-map...)
+
+
+// Modificar mixins con otros mixis
+//@mixin stylish-mixin($args...)
+//	color: #fff
+
+//@mixin wrapped-stylish-mixin($args)
+//	font-weight: bold
+//	@include stylish-mixin($args...)
+
+
+//.stylish
+	// El argumento $width se pasa con nombre al mixin "stylish-mixin"
+//	@include wrapped-stylish-mixin(#00ff00, $width: 100px)
+
+
+/**
+ * Pasar bloque de contenido a los mixins
+ */
+@mixin apply-to-ie6-only
+	* html
+		@content
+
+@include apply-to-ie6-only
+	#logo
+		background-image: url(/logo.gif)
+
+// Forma alterna de declarar mixins
+=apply-to-ie6-only
+	* html
+		@content
+ 
++apply-to-ie6-only
+	#logo
+		background-image: url(/logo.gif)
+
+/**
+ * CONTEXTO DE VARIABLES
+ */
+$color: white
+@mixin colors($color: blue)
+	background-color: $color
+	@content
+	border-color: $color
+
+.colors
+	@include colors
+		color: $color

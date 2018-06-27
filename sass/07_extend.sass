@@ -1,0 +1,64 @@
+/**
+ * Extend clase
+ */
+.error
+	border: 1px solid #f00
+	background-color: #fdd
+
+.seriousError
+	@extend .error
+	border-width: 3px
+
+/**
+ * Extend propiedad
+ */
+a:hover
+	color: #333
+
+.hoverlink
+	@extend a:hover
+
+
+/**
+ * Multiple Extend
+ */
+.error
+	border: 1px #f00
+	background-color: #fdd
+
+.attention
+	font-size: 3em
+	background-color: #ff0
+
+.seriousError
+	@extend .error
+	@extend .attention
+	border-width: 3px
+
+/**
+ * Selector exclusivo
+ */
+#context a%extreme
+	color: blue
+	font-weight: bold
+	font-size: 2em
+
+.notice
+	@extend %extreme
+
+/**
+ * Extend opcional
+ */
+a.important
+	@extend .notice !optional
+
+/**
+ * Extend en Medias Queries
+ */
+@media print
+	.error-in
+		border: 1px #f00
+		background-color: #fdd
+	.seriousError
+		@extend .error-in
+		border-width: 3px
